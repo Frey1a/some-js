@@ -1,0 +1,13 @@
+#grid {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#grid img {
+  margin: 5px;
+  border: solid #333333 2px;
+  border-radius: 7px;
+}
+
+/*# sourceMappingURL=style.css.map */
