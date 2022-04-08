@@ -81,7 +81,6 @@ function checkMatch() {
 		cards[optionTwoId].setAttribute('src', './img/blank.png')
 	} else {
 		if (cardsChosen[0] == cardsChosen[1]) {
-			alert('You found a match!')
 			cards[cardsChosenIds[0]].setAttribute('src', 'img/white.png')
 			cards[cardsChosenIds[1]].setAttribute('src', 'img/white.png')
 			cards[cardsChosenIds[0]].removeEventListener('click', flipCard)
