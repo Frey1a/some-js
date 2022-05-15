@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form Validate I</title>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+	<div class="root">
+		<div id="register">
+			<form action="" method="POST" class="form" id="form-1">
+				<h2 class="heading">Register</h2>
+				<p class="desc">Create your account ❤️</p>
+				<div class="form__group">
+					<label for="form__group--fullname" class="form__label">Full Name</label>
+					<input type="text" name="fullname" id="form__group--fullname" class="form__control"
+						placeholder="Name...">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<label for="form__group--email" class="form__label">Email</label>
+					<input type="email" id="form__group--email" name="email" class="form__control"
+						placeholder="Email address...">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<label for="form__group--password" class="form__label">Password</label>
+					<input type="password" id="form__group--password" name="password" class="form__control"
+						placeholder="••••••••">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<label for="form__group--confirm" class="form__label">Confirm Password</label>
+					<input type="password" id="form__group--confirm" name="password_comfirm" class="form__control"
+						placeholder="••••••••">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<button class="form__submit">Register Now</button>
+				</div>
+				<p class="form__sign">Already have an account? <button type="button">Sign In</button></p>
+			</form>
+		</div>
+		<!-- End Register -->
+
+		<div id="sign-in">
+			<form action="" method="POST" class="form" id="form-2">
+				<h2 class="heading">Sign In</h2>
+				<p class="desc">Let's learn together ❤️</p>
+				<div class="form__group">
+					<label for="form__group--email" class="form__label">Email</label>
+					<input type="email" id="form__group--email" name="email" class="form__control"
+						placeholder="Email address...">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<label for="form__group--password" class="form__label">Password</label>
+					<input type="password" id="form__group--password" name="password" class="form__control"
+						placeholder="••••••••">
+					<span class="form__message"></span>
+				</div>
+				<div class="form__group">
+					<button class="form__submit">Sign In</button>
+				</div>
+				<p class="form__sign">Don't have an account? <button type="button">Register</button></p>
+			</form>
+		</div>
+		<!-- End Sign in -->
+
+	</div>
+	<!-- End root -->
+
+	<script src="validator.js"></script>
+	<script src="app.js"></script>
+	<script>
+
+		// Want 
+
+		document.addEventListener("DOMContentLoaded", function () {
+			//form 1
+			Validator({
+				form: "#form-1",
+				formGroupSelector: ".form__group",
+				messageElement: ".form__message",
+				errorClass: "invalid",
+				rules: [
+					Validator.isRequired("#form__group--fullname", "Please enter Fullname"),
+					Validator.isRequired("#form__group--email", "Please enter Email"),
+					Validator.isRequired("#form__group--password", "Please enter Password"),
+					Validator.isRequired("#form__group--confirm", "Please enter Password"),
+					Validator.isEmail("#form__group--email", "This isn't an email"),
+					Validator.isPassWord("#form__group--password", `At least one upper case letter
+		At least one lower case letter
+		At least one digit
+		At least one special character
+		Minimum eight in length
+		`  ),
+					Validator.isSamePass("#form__group--confirm", function () {
+						return document.querySelector("#form-1 #form__group--password").value
+					}, "Invalid password", "Passwords are not the same")
+				],
+				onSubmit: function (data) {
+					console.log(data);
+				}
+			})
+
+
+			//form 2
+			Validator({
+				form: "#form-2",
+				formGroupSelector: ".form__group",
+				messageElement: ".form__message",
+				errorClass: "invalid",
+				rules: [
+					Validator.isRequired("#form__group--email", "Please enter Email"),
+					Validator.isRequired("#form__group--password", "Please enter Password"),
+					Validator.isEmail("#form__group--email", "This isn't an email"),
+					Validator.isPassWord("#form__group--password", `At least one upper case letter
+		At least one lower case letter
+		At least one digit
+		At least one special character
+		Minimum eight in length
+		`  ),
+				],
+				onSubmit: function (data) {
+					console.log(data);
+				}
+			})
+
+
+
+		})
+
+
+	</script>
+</body>
+
+</html>
